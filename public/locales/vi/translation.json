@@ -402,5 +402,47 @@
       "title": "Exness — Bắt đầu từ $10",
       "sub": "Rút tiền tức thì · 6 giấy phép",
       "btn": "Mở tài khoản"
+    },
+    "botcheck": {
+      "title": "Xác minh bảo mật",
+      "subtitle": "Được bảo vệ bởi ExTradeFX",
+      "label": "Tôi không phải là robot",
+      "sublabel": {
+        "idle": "Nhấn để xác minh danh tính của bạn",
+        "checking1": "Đang phân tích dấu vân tay trình duyệt…",
+        "checking2": "Đang kiểm tra mẫu tương tác…",
+        "checking3": "Đang xác minh token phiên…",
+        "checking4": "Sắp hoàn tất…"
+      },
+      "status": {
+        "idle": "Đang chờ xác minh…",
+        "checking": "Đang xác minh…",
+        "done": "Đã xác minh con người — cho phép truy cập"
+      },
+      "redirect": {
+        "prefix": "Chuyển hướng sau",
+        "suffix": "…"
+      },
+      "footer": {
+        "privacy": "Chính sách bảo mật",
+        "terms": "Điều khoản",
+        "help": "Trợ giúp",
+        "brand": "Được bảo vệ bởi ExTradeFX"
+      },
+      "pageNote": "Kiểm tra bảo mật này xác nhận bạn là người thật. Kết nối của bạn được mã hóa và an toàn."
+    },
+    "notFound": {
+      "title": "Không tìm thấy trang",
+      "sub": "Trang bạn đang tìm kiếm không tồn tại hoặc đã được chuyển đi. Hãy kiểm tra lại URL hoặc quay về trang chủ.",
+      "cta": {
+        "home": "Về trang chủ →",
+        "openAccount": "Mở tài khoản"
+      },
+      "quickLinks": {
+        "trading": "Công cụ giao dịch",
+        "accounts": "Loại tài khoản",
+        "platforms": "Nền tảng",
+        "support": "Hỗ trợ"
+      }
     }
   }

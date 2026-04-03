@@ -401,5 +401,47 @@
     "title": "Exness — Start from $10",
     "sub": "Instant withdrawals · 6 licenses",
     "btn": "Open Account"
+  },
+  "botcheck": {
+    "title": "Security verification",
+    "subtitle": "Protected by ExTradeFX",
+    "label": "I'm not a robot",
+    "sublabel": {
+      "idle": "Click to verify your identity",
+      "checking1": "Analyzing browser fingerprint…",
+      "checking2": "Checking interaction patterns…",
+      "checking3": "Verifying session token…",
+      "checking4": "Almost done…"
+    },
+    "status": {
+      "idle": "Awaiting verification…",
+      "checking": "Verifying…",
+      "done": "Human verified — access granted"
+    },
+    "redirect": {
+      "prefix": "Redirecting in",
+      "suffix": "…"
+    },
+    "footer": {
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "help": "Help",
+      "brand": "Protected by ExTradeFX"
+    },
+    "pageNote": "This security check confirms you are a real person. Your connection is encrypted and secure."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "sub": "The page you're looking for doesn't exist or has been moved. Check the URL or head back home.",
+    "cta": {
+      "home": "Go to home →",
+      "openAccount": "Open account"
+    },
+    "quickLinks": {
+      "trading": "Trading instruments",
+      "accounts": "Account types",
+      "platforms": "Platforms",
+      "support": "Support"
+    }
   }
 }

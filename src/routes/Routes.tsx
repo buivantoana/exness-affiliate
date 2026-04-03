@@ -1,14 +1,13 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LandingPageController from "../pages/landing_page/LandingPageController";
-import ViewController from "../pages/view/ViewController";
+import {  Route, Routes } from "react-router-dom";
+
+import CatchAllPage from "../pages/catch-all-page/CatchAllPage";
 
 const Router = () => {
 
 
   return (
     <Routes>
-      <Route path='/' element={<LandingPageController />} />
-      <Route path='/review' element={<ViewController />} />
+       <Route path="*" element={<CatchAllPage />} />
     </Routes>
   );
 };

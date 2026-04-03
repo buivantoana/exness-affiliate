@@ -401,5 +401,47 @@
       "title": "Exness — Mulai dari $10",
       "sub": "Penarikan Instan · 6 Lisensi",
       "btn": "Buka Akun"
+    },
+    "botcheck": {
+      "title": "Verifikasi keamanan",
+      "subtitle": "Dilindungi oleh ExTradeFX",
+      "label": "Saya bukan robot",
+      "sublabel": {
+        "idle": "Klik untuk memverifikasi identitas Anda",
+        "checking1": "Menganalisis sidik jari browser…",
+        "checking2": "Memeriksa pola interaksi…",
+        "checking3": "Memverifikasi token sesi…",
+        "checking4": "Hampir selesai…"
+      },
+      "status": {
+        "idle": "Menunggu verifikasi…",
+        "checking": "Memverifikasi…",
+        "done": "Telah diverifikasi sebagai manusia — akses diberikan"
+      },
+      "redirect": {
+        "prefix": "Mengalihkan dalam",
+        "suffix": "…"
+      },
+      "footer": {
+        "privacy": "Privasi",
+        "terms": "Syarat",
+        "help": "Bantuan",
+        "brand": "Dilindungi oleh ExTradeFX"
+      },
+      "pageNote": "Pemeriksaan keamanan ini mengonfirmasi bahwa Anda adalah orang asli. Koneksi Anda dienkripsi dan aman."
+    },
+    "notFound": {
+      "title": "Halaman tidak ditemukan",
+      "sub": "Halaman yang Anda cari tidak ada atau telah dipindahkan. Periksa URL atau kembali ke beranda.",
+      "cta": {
+        "home": "Kembali ke beranda →",
+        "openAccount": "Buka akun"
+      },
+      "quickLinks": {
+        "trading": "Instrumen trading",
+        "accounts": "Jenis akun",
+        "platforms": "Platform",
+        "support": "Dukungan"
+      }
     }
   }

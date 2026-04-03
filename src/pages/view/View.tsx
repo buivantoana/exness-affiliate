@@ -7,6 +7,8 @@ import {
   Paper, Table, TableBody, TableCell, TableContainer,
   TableHead, TableRow, Collapse
 } from "@mui/material";
+import { useLinks } from "../../hooks/useLinks";
+import LoadingFullscreen from "../../components/Loading";
 
 // ─── LANGUAGE CONFIG ─────────────────────────────────────────────
 const LANGUAGES = [
@@ -196,7 +198,7 @@ function UrgencyBar() {
 }
 
 // ─── HERO ────────────────────────────────────────────────────
-function Hero() {
+function Hero({onClick}) {
   const { t } = useTranslation();
   const isMobile = useMediaQuery("(max-width:640px)");
 
@@ -251,7 +253,7 @@ function Hero() {
 
         {/* CTAs */}
         <Stack direction={isMobile ? "column" : "row"} gap={1.5}>
-          <Button onClick={() => navTo("/go/register")} sx={{
+          <Button onClick={onClick} sx={{
             background: T.yellow, color: T.navy, px: 3, py: 1.25, fontSize: 13, fontWeight: 600,
             fontFamily: "'Sora',sans-serif", textTransform: "none", borderRadius: T.radius,
             "&:hover": { background: T.yellow2 }
@@ -1089,12 +1091,14 @@ function StickyBottomMobile() {
 
 // ─── ROOT COMPONENT ─────────────────────────────────────────
 export default function ReviewPageView() {
+  const { navTo, isLoading, /* registerLink, signInLink, ... */ } = useLinks();
+  if (isLoading) return <LoadingFullscreen/>;
   return (
     <Box sx={{ background: T.white, color: T.text, fontFamily: "'DM Sans',sans-serif", fontSize: 15, lineHeight: 1.7, pb: { xs: 8, sm: 0 } }}>
       <TopNav />
       <Breadcrumb />
       <UrgencyBar />
-      <Hero />
+      <Hero onClick={() => navTo('register')} />
       <StickyNav />
       <QuizSection />
       <ExpertAssessment />

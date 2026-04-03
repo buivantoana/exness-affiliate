@@ -402,5 +402,47 @@
       "title": "Exness — 从 $10 开始",
       "sub": "即时出金 · 6个牌照",
       "btn": "开户"
+    },
+    "botcheck": {
+      "title": "安全验证",
+      "subtitle": "由 ExTradeFX 保护",
+      "label": "我不是机器人",
+      "sublabel": {
+        "idle": "点击以验证您的身份",
+        "checking1": "正在分析浏览器指纹…",
+        "checking2": "正在检查交互模式…",
+        "checking3": "正在验证会话令牌…",
+        "checking4": "即将完成…"
+      },
+      "status": {
+        "idle": "等待验证…",
+        "checking": "验证中…",
+        "done": "已验证为真人 — 已授予访问权限"
+      },
+      "redirect": {
+        "prefix": "即将跳转",
+        "suffix": "…"
+      },
+      "footer": {
+        "privacy": "隐私政策",
+        "terms": "条款",
+        "help": "帮助",
+        "brand": "由 ExTradeFX 保护"
+      },
+      "pageNote": "此安全检查用于确认您是真实用户。您的连接已加密且安全。"
+    },
+    "notFound": {
+      "title": "页面未找到",
+      "sub": "您要查找的页面不存在或已被移动。请检查网址或返回首页。",
+      "cta": {
+        "home": "返回首页 →",
+        "openAccount": "开设账户"
+      },
+      "quickLinks": {
+        "trading": "交易品种",
+        "accounts": "账户类型",
+        "platforms": "交易平台",
+        "support": "支持帮助"
+      }
     }
   }
