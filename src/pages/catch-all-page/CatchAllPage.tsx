@@ -14,7 +14,7 @@ export default function CatchAllPage() {
       queryFn: api.getSubPaths,
       staleTime: 60000,
     });
-  
+    console.log("AAAA subPathsData",subPathsData)
     // Thêm error handling
     if (error) {
       console.error('Failed to load subPaths:', error);

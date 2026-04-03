@@ -1,5 +1,6 @@
-import { useTranslation } from "react-i18next";
+
 import { Box, Typography, Button, Stack } from "@mui/material";
+import { useLanguage } from "../../hooks/useLanguage";
 
 const T = {
   navy: "#0a0f1e",
@@ -14,7 +15,7 @@ const T = {
 const navTo = (path: string) => { window.location.href = path; };
 
 export default function NotFoundPage() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
 
   const quickLinks = [
     { labelKey: "notFound.quickLinks.trading", path: "/go/trading" },

@@ -1,11 +1,13 @@
 import { useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
+
 import {
   Box, Container, Typography, Button, Grid, Card,
   Chip, Stack, Divider, Select, MenuItem, useTheme,
   useMediaQuery, IconButton, Drawer,
 } from "@mui/material";
 import { useCountdown, useLiveCounter } from "../../hooks/useCountdown";
+import { useLanguage } from "../../hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 
 // ─── LANGUAGE CONFIG ─────────────────────────────────────────────
 const LANGUAGES = [
@@ -61,7 +63,7 @@ const TagChip = ({ label, color }: { label: string; color: "green" | "yellow" | 
 
 // ─── TOPBAR ──────────────────────────────────────────────────
 function TopBar() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const { h, m, s } = useCountdown();
   const numStyle = {
     background: T.navy, color: T.yellow, px: 0.8, py: 0.25,
@@ -93,9 +95,10 @@ function TopBar() {
 
 // ─── NAVBAR ──────────────────────────────────────────────────
 function NavBar() {
-  const { t, i18n } = useTranslation();
+  const { t,changeLanguage,currentLanguage } = useLanguage();
+  
   const isMobile = useMediaQuery("(max-width:640px)");
-  const currentLang = LANGUAGES.find(l => l.code === i18n.language) || LANGUAGES[0];
+ 
 
   return (
     <Box component="nav" sx={{
@@ -118,8 +121,8 @@ function NavBar() {
         <Stack direction="row" alignItems="center" gap={1.25} sx={{ ml: "auto" }}>
           {/* Language selector */}
           <Select
-            value={i18n.language}
-            onChange={(e) => i18n.changeLanguage(e.target.value)}
+            value={currentLanguage}
+            onChange={(e) => changeLanguage(e.target.value)}
             size="small"
             variant="outlined"
             sx={{
@@ -165,7 +168,7 @@ function NavBar() {
 
 // ─── LIVE STRIP ──────────────────────────────────────────────
 function LiveStrip() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const { viewers, openers } = useLiveCounter();
   return (
     <Box sx={{
@@ -183,7 +186,7 @@ function LiveStrip() {
 
 // ─── HERO ────────────────────────────────────────────────────
 function Hero() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const isMobile = useMediaQuery("(max-width:640px)");
   return (
     <Box sx={{ py: { xs: 7, md: 9 }, px: 3, position: "relative", overflow: "hidden", "&::before": { content: '""', position: "absolute", top: -200, left: "50%", transform: "translateX(-50%)", width: 800, height: 800, background: "radial-gradient(circle,rgba(255,222,2,.06) 0%,transparent 65%)", pointerEvents: "none" } }}>
@@ -240,7 +243,7 @@ function Hero() {
 
 // ─── METRICS STRIP ──────────────────────────────────────────
 function MetricsStrip() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const metrics = [
     { val: t("metrics.m1val"), lbl: t("metrics.m1lbl"), sub: t("metrics.m1sub"), green: false },
     { val: t("metrics.m2val"), lbl: t("metrics.m2lbl"), sub: t("metrics.m2sub"), green: true },
@@ -266,7 +269,7 @@ function MetricsStrip() {
 
 // ─── MARQUEE ────────────────────────────────────────────────
 function Marquee() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const items = ["i1","i2","i3","i4","i5","i6","i7","i8"].map(k => t(`marquee.${k}`));
   const doubled = [...items, ...items];
   return (
@@ -285,7 +288,7 @@ function Marquee() {
 
 // ─── WHY SECTION ────────────────────────────────────────────
 function WhySection() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const cards = [
     { icon: "⚡", iconBg: "rgba(255,222,2,.12)", titleKey: "c1title", textKey: "c1text", statKey: "c1stat", lblKey: "c1lbl" },
     { icon: "📊", iconBg: "rgba(29,158,117,.12)", titleKey: "c2title", textKey: "c2text", statKey: "c2stat", lblKey: "c2lbl" },
@@ -334,7 +337,7 @@ function WhySection() {
 
 // ─── INSTRUMENTS ────────────────────────────────────────────
 function InstrumentsSection() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const items = [
     { icon: "🥇", nameKey: "i1name", countKey: "i1count" },
     { icon: "💱", nameKey: "i2name", countKey: "i2count" },
@@ -366,7 +369,7 @@ function InstrumentsSection() {
 
 // ─── ACCOUNTS ────────────────────────────────────────────────
 function AccountsSection() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const accounts = [
     { badgeKey: "a1badge", nameKey: "a1name", descKey: "a1desc", deposit: "$10", spread: "0.3 pip", commColor: T.green2, featured: false },
     { badgeKey: "a2badge", nameKey: "a2name", descKey: "a2desc", deposit: null, spread: "0.3 pip", commColor: T.green2, featured: true },
@@ -417,7 +420,7 @@ function AccountsSection() {
 
 // ─── STEPS ────────────────────────────────────────────────────
 function StepsSection() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const isMobile = useMediaQuery("(max-width:640px)");
   const steps = [
     { num: "1", titleKey: "s1title", textKey: "s1text", ctaKey: "s1cta", hasCta: true },
@@ -458,7 +461,7 @@ function StepsSection() {
 
 // ─── TESTIMONIALS ────────────────────────────────────────────
 function TestimonialsSection() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const testimonialsData = [
     { textKey: "t1text", nameKey: "t1name", metaKey: "t1meta", initials: "AS", avatarBg: "rgba(24,95,165,.3)", avatarColor: T.blue2, stars: 5 },
     { textKey: "t2text", nameKey: "t2name", metaKey: "t2meta", initials: "KP", avatarBg: "rgba(29,158,117,.2)", avatarColor: T.green2, stars: 4 },
@@ -516,7 +519,7 @@ function TestimonialsSection() {
 
 // ─── PLATFORMS ──────────────────────────────────────────────
 function PlatformsSection() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const platforms = [
     { icon: "🖥", nameKey: "p1name", descKey: "p1desc" },
     { icon: "📊", nameKey: "p2name", descKey: "p2desc" },
@@ -557,7 +560,7 @@ function PlatformsSection() {
 
 // ─── FINAL CTA ──────────────────────────────────────────────
 function FinalCta() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const isMobile = useMediaQuery("(max-width:640px)");
   const features = ["f1","f2","f3","f4"];
   return (
@@ -588,7 +591,7 @@ function FinalCta() {
 
 // ─── DISCLAIMER ─────────────────────────────────────────────
 function Disclaimer() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   return (
     <Box sx={{ background: T.navy, py: 2.5, px: 3, borderTop: `1px solid ${T.border}` }}>
       <Typography sx={{ maxWidth: 960, mx: "auto", fontSize: 11, color: T.dimmer, lineHeight: 1.7 }}>
@@ -600,7 +603,7 @@ function Disclaimer() {
 
 // ─── STICKY BOTTOM MOBILE ──────────────────────────────────
 function StickyBottom() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   return (
     <Box sx={{ display: { xs: "flex", sm: "none" }, position: "fixed", bottom: 0, left: 0, right: 0, background: "rgba(10,15,30,.98)", borderTop: `1px solid ${T.border}`, py: 1.5, px: 2.5, zIndex: 200, backdropFilter: "blur(10px)", justifyContent: "space-between", alignItems: "center", gap: 1.5 }}>
       <Box>

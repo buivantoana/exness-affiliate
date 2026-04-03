@@ -1,52 +1,71 @@
-// src/hooks/useLanguage.js
-import { useState, useEffect } from 'react';
-import { useQuery } from 'react-query';
-// import { api } from '../services/api';
+// src/hooks/useLanguage.ts
+import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useLinks } from './useLinks';
 
-const TRANSLATIONS = {
-  en: { /* English texts */ },
-  vi: { /* Vietnamese texts */ },
-  ar: { /* Arabic texts (RTL) */ },
-  // ... 7 languages
+// Helper: tạo storage key theo domain + subpath (theo tài liệu)
+const getStorageKey = () => {
+  const hostname = window.location.hostname;
+  const pathname = window.location.pathname;
+  const segment = pathname.split('/').filter(Boolean)[0] || 'root';
+  return `language_${hostname}_${segment}`;
 };
 
 export const useLanguage = () => {
-  const segment = window.location.pathname.split('/').filter(Boolean)[0] || null;
-  const hostname = window.location.hostname;
-  
-  const storageKey = `language_${hostname}_${segment || 'root'}`;
-  const [language, setLanguage] = useState(() => {
-    return localStorage.getItem(storageKey) || 'en';
+  const { i18n, t } = useTranslation();
+  const { defaultLanguage, isLoading } = useLinks(); // ⭐ Thêm isLoading
+  const currentLanguage = i18n.language;
+  const hasInitialized = useRef(false); // ⭐ Chỉ chạy 1 lần
+
+  console.log("🔍 useLanguage debug:", { 
+    defaultLanguage, 
+    isLoading, 
+    currentLanguage,
+    hasInitialized: hasInitialized.current 
   });
 
-  const { data: defaultLang } = useQuery({
-    queryKey: ['defaultLanguage', segment],
-    queryFn: () => api.getDefaultLanguage(segment),
-    staleTime: 60000,
-  });
-
-  // Sync với default language từ server khi lần đầu
+  // Sync language từ server khi lần đầu
   useEffect(() => {
-    if (defaultLang?.defaultLanguage && !localStorage.getItem(storageKey)) {
-      setLanguage(defaultLang.defaultLanguage);
-      localStorage.setItem(storageKey, defaultLang.defaultLanguage);
-    }
-  }, [defaultLang, storageKey]);
+    // ⭐ Chờ data load xong và chưa init
+    if (isLoading || hasInitialized.current) return;
 
-  const changeLanguage = (langCode) => {
-    setLanguage(langCode);
-    localStorage.setItem(storageKey, langCode);
-    // Set RTL cho Arabic
-    if (langCode === 'ar') {
-      document.documentElement.setAttribute('dir', 'rtl');
-    } else {
-      document.documentElement.setAttribute('dir', 'ltr');
+    if (defaultLanguage) {
+      const key = getStorageKey();
+      const savedLang = localStorage.getItem(key);
+      
+      console.log("📦 Storage check:", { key, savedLang, defaultLanguage });
+      
+      // Nếu chưa có trong localStorage, dùng defaultLanguage từ server
+      if (!savedLang) {
+        console.log("🌐 Setting default language:", defaultLanguage);
+        localStorage.setItem(key, defaultLanguage);
+        i18n.changeLanguage(defaultLanguage);
+      } 
+      // Nếu có rồi, đồng bộ với i18n
+      else if (savedLang !== currentLanguage) {
+        console.log("🔄 Syncing with saved language:", savedLang);
+        i18n.changeLanguage(savedLang);
+      }
+      
+      hasInitialized.current = true;
     }
+  }, [defaultLanguage, isLoading, i18n, currentLanguage]);
+
+  const changeLanguage = (langCode: string) => {
+    const key = getStorageKey();
+    console.log("🏳️ Changing language to:", langCode, "key:", key);
+    
+    localStorage.setItem(key, langCode);
+    i18n.changeLanguage(langCode);
+    
+    // Handle RTL cho Arabic
+    document.documentElement.dir = langCode === 'ar' ? 'rtl' : 'ltr';
   };
 
-  const t = (key) => {
-    return TRANSLATIONS[language]?.[key] || TRANSLATIONS.en[key] || key;
+  return {
+    currentLanguage,
+    changeLanguage,
+    t,
+    isRTL: currentLanguage === 'ar',
   };
-
-  return { language, changeLanguage, t, isRTL: language === 'ar' };
 };

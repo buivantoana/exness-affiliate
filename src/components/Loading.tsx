@@ -1,5 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
+
 
 const T = {
   navy: "#0a0f1e",
@@ -170,7 +171,7 @@ function LoadingLabel({ text }: { text: string }) {
 // ─── VARIANT 1: FULLSCREEN ────────────────────────────────
 // dùng cho: Suspense fallback, trang đang load lần đầu
 export function LoadingFullscreen() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
 
   return (
     <Box
@@ -246,7 +247,7 @@ export function LoadingInline({
   size?: number;
   label?: string;
 }) {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
 
   return (
     <Stack

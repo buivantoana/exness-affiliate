@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useTranslation } from "react-i18next";
+
 import {
   Box, Container, Typography, Button, Grid, Card,
   Chip, Stack, Divider, Select, MenuItem, useTheme,
@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import { useLinks } from "../../hooks/useLinks";
 import LoadingFullscreen from "../../components/Loading";
+import { useLanguage } from "../../hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 
 // ─── LANGUAGE CONFIG ─────────────────────────────────────────────
 const LANGUAGES = [
@@ -97,8 +99,7 @@ const Stars = ({ rating, size = 14 }: { rating: number; size?: number }) => {
 
 // ─── TOP NAV ──────────────────────────────────────────────────
 function TopNav() {
-  const { t, i18n } = useTranslation();
-  const currentLang = LANGUAGES.find(l => l.code === i18n.language) || LANGUAGES[0];
+  const { t,changeLanguage,currentLanguage } = useLanguage();
 
   return (
     <Box sx={{
@@ -131,8 +132,8 @@ function TopNav() {
 
         <Box sx={{ ml: "auto" }}>
           <Select
-            value={i18n.language}
-            onChange={(e) => i18n.changeLanguage(e.target.value)}
+            value={currentLanguage}
+            onChange={(e) => changeLanguage(e.target.value)}
             size="small"
             sx={{
               fontSize: 11, color: T.text2, height: 28, minWidth: 70,
@@ -155,7 +156,7 @@ function TopNav() {
 
 // ─── BREADCRUMB ──────────────────────────────────────────────
 function Breadcrumb() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   return (
     <Box sx={{ py: 1.5, px: 2.5, background: T.white, borderBottom: `1px solid ${T.border}` }}>
       <Box sx={{ maxWidth: 900, mx: "auto", fontSize: 12, color: T.text3 }}>
@@ -168,7 +169,7 @@ function Breadcrumb() {
 
 // ─── URGENCY BAR ────────────────────────────────────────────
 function UrgencyBar() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const [viewers, setViewers] = useState(247);
   const [openers, setOpeners] = useState(38);
 
@@ -199,7 +200,7 @@ function UrgencyBar() {
 
 // ─── HERO ────────────────────────────────────────────────────
 function Hero({onClick}) {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const isMobile = useMediaQuery("(max-width:640px)");
 
   return (
@@ -271,7 +272,7 @@ function Hero({onClick}) {
 
 // ─── STICKY NAV ──────────────────────────────────────────────
 function StickyNav() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const [active, setActive] = useState("quiz");
   const sections = ["quiz", "expert", "trust", "accounts", "compare", "reviews", "faq"];
   const labels = ["findBroker", "expertAssessment", "trustSafety", "accountTypes", "compare", "reviews", "faq"];
@@ -321,7 +322,7 @@ function StickyNav() {
 
 // ─── QUIZ SECTION ────────────────────────────────────────────
 function QuizSection() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showResult, setShowResult] = useState(false);
@@ -521,7 +522,7 @@ function QuizSection() {
 
 // ─── EXPERT ASSESSMENT ───────────────────────────────────────
 function ExpertAssessment() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const [hoveredBar, setHoveredBar] = useState<string | null>(null);
 
   const scores = [
@@ -619,7 +620,7 @@ function ExpertAssessment() {
 
 // ─── TRUST & SAFETY ──────────────────────────────────────────
 function TrustSafety() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const regulations = [
     { name: "CySEC", active: true }, { name: "FCA", active: true }, { name: "FSA (SC)", active: true },
     { name: "FSCA", active: true }, { name: "FSC", active: true }, { name: "CBCS", active: true },
@@ -701,7 +702,7 @@ function TrustSafety() {
 
 // ─── ACCOUNT TYPES ───────────────────────────────────────────
 function AccountTypes() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const accounts = [
     { name: t("accounts.cent"), desc: t("accounts.centDesc") },
     { name: t("accounts.standard"), desc: t("accounts.standardDesc"), popular: true },
@@ -793,7 +794,7 @@ function AccountTypes() {
 
 // ─── COMPARISON TABLE ────────────────────────────────────────
 function ComparisonTable() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const rows = [
     { feature: t("compare.minDeposit"), exness: "$10", xm: "$5", ic: "$200", exnessHighlight: true },
     { feature: t("compare.eurusdSpread"), exness: "0.3 pip", xm: "1.6 pip", ic: "0.1 pip", exnessHighlight: true, exnessColor: T.green },
@@ -856,7 +857,7 @@ function ComparisonTable() {
 
 // ─── TESTIMONIALS ────────────────────────────────────────────
 function Testimonials() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const testimonials = [
     { name: t("testimonials.t1name"), location: t("testimonials.t1location"), text: t("testimonials.t1text"), rating: 5, initials: "AS", color: T.blueLight, textColor: T.blueText },
     { name: t("testimonials.t2name"), location: t("testimonials.t2location"), text: t("testimonials.t2text"), rating: 4, initials: "KP", color: T.greenLight, textColor: T.greenText },
@@ -912,7 +913,7 @@ function Testimonials() {
 
 // ─── PLATFORMS SECTION ───────────────────────────────────────
 function PlatformsSection() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const platforms = [
     { name: t("platforms.mt4"), desc: t("platforms.mt4Desc") },
     { name: t("platforms.mt5"), desc: t("platforms.mt5Desc") },
@@ -977,7 +978,7 @@ function PlatformsSection() {
 
 // ─── CONCLUSION ──────────────────────────────────────────────
 function Conclusion() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   return (
     <Box sx={{ py: 3.5, px: 2.5, borderBottom: `1px solid ${T.border}`, background: T.bg }}>
       <Box sx={{ maxWidth: 900, mx: "auto" }}>
@@ -1005,7 +1006,7 @@ function Conclusion() {
 
 // ─── FAQ ─────────────────────────────────────────────────────
 function FAQ() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
@@ -1054,7 +1055,7 @@ function FAQ() {
 
 // ─── DISCLAIMER ──────────────────────────────────────────────
 function Disclaimer() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   return (
     <Box sx={{ py: 2.5, px: 2.5, background: T.bg, borderTop: `1px solid ${T.border}` }}>
       <Box sx={{ maxWidth: 900, mx: "auto", fontSize: 11, color: T.text3, lineHeight: 1.7 }}>
@@ -1066,7 +1067,7 @@ function Disclaimer() {
 
 // ─── STICKY BOTTOM MOBILE ────────────────────────────────────
 function StickyBottomMobile() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   return (
     <Box sx={{
       display: { xs: "flex", sm: "none" }, position: "fixed", bottom: 0, left: 0, right: 0,

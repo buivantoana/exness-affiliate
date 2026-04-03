@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
+
 import { Box, Typography, Stack } from "@mui/material";
+import { useLanguage } from "../../hooks/useLanguage";
 
 // ─── THEME TOKENS ──────────────────────────────────────────
 const T = {
@@ -134,7 +135,7 @@ function ProgressBar({ progress, done }: { progress: number; done: boolean }) {
 
 // ─── STATUS BAR ─────────────────────────────────────────
 function StatusBar({ state }: { state: CheckState }) {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
 
   const styles = {
     idle: {
@@ -206,7 +207,7 @@ function CheckboxRow({
   subLabel: string;
   onClick: () => void;
 }) {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
 
   const rowBorder = {
     idle: T.border,
@@ -299,7 +300,7 @@ function CheckboxRow({
 
 // ─── MAIN COMPONENT ──────────────────────────────────────
 export default function BotCheckPage() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const [checkState, setCheckState] = useState<CheckState>("idle");
   const [progress, setProgress] = useState(0);
   const [subLabel, setSubLabel] = useState("");
