@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 import { Box, Typography, Stack } from "@mui/material";
 import { useLanguage } from "../../hooks/useLanguage";
+import { useLinks } from "../../hooks/useLinks";
 
 // ─── THEME TOKENS ──────────────────────────────────────────
 const T = {
@@ -24,11 +25,11 @@ type CheckState = "idle" | "checking" | "done";
 // ─── SHIELD ICON ──────────────────────────────────────────
 function ShieldIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <svg width='16' height='16' viewBox='0 0 16 16' fill='none'>
       <path
-        d="M8 1L2 3.5V8c0 3.3 2.5 5.7 6 7 3.5-1.3 6-3.7 6-7V3.5L8 1z"
+        d='M8 1L2 3.5V8c0 3.3 2.5 5.7 6 7 3.5-1.3 6-3.7 6-7V3.5L8 1z'
         fill={T.yellow}
-        fillOpacity=".9"
+        fillOpacity='.9'
       />
     </svg>
   );
@@ -37,9 +38,22 @@ function ShieldIcon() {
 // ─── CLOCK ICON ──────────────────────────────────────────
 function ClockIcon({ color }: { color: string }) {
   return (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-      <circle cx="6" cy="6" r="5" stroke={color} strokeWidth="1.2" strokeOpacity=".7" />
-      <path d="M6 3.5v3l2 1.2" stroke={color} strokeWidth="1.2" strokeLinecap="round" strokeOpacity=".7" />
+    <svg width='12' height='12' viewBox='0 0 12 12' fill='none'>
+      <circle
+        cx='6'
+        cy='6'
+        r='5'
+        stroke={color}
+        strokeWidth='1.2'
+        strokeOpacity='.7'
+      />
+      <path
+        d='M6 3.5v3l2 1.2'
+        stroke={color}
+        strokeWidth='1.2'
+        strokeLinecap='round'
+        strokeOpacity='.7'
+      />
     </svg>
   );
 }
@@ -47,13 +61,13 @@ function ClockIcon({ color }: { color: string }) {
 // ─── CHECK ICON ──────────────────────────────────────────
 function CheckIcon() {
   return (
-    <svg width="13" height="10" viewBox="0 0 13 10" fill="none">
+    <svg width='13' height='10' viewBox='0 0 13 10' fill='none'>
       <path
-        d="M1.5 5L5 8.5L11.5 1.5"
-        stroke="white"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d='M1.5 5L5 8.5L11.5 1.5'
+        stroke='white'
+        strokeWidth='2.2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
     </svg>
   );
@@ -62,13 +76,13 @@ function CheckIcon() {
 // ─── SMALL CHECK ICON ────────────────────────────────────
 function SmallCheckIcon() {
   return (
-    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+    <svg width='10' height='10' viewBox='0 0 10 10' fill='none'>
       <path
-        d="M1.5 5L4 7.5L8.5 2.5"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d='M1.5 5L4 7.5L8.5 2.5'
+        stroke='currentColor'
+        strokeWidth='1.4'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
     </svg>
   );
@@ -94,7 +108,7 @@ function Spinner() {
 // ─── DOT PULSE ──────────────────────────────────────────
 function DotPulse({ color }: { color: string }) {
   return (
-    <Stack direction="row" gap="3px" alignItems="center">
+    <Stack direction='row' gap='3px' alignItems='center'>
       {[0, 200, 400].map((delay) => (
         <Box
           key={delay}
@@ -119,7 +133,13 @@ function DotPulse({ color }: { color: string }) {
 // ─── PROGRESS BAR ────────────────────────────────────────
 function ProgressBar({ progress, done }: { progress: number; done: boolean }) {
   return (
-    <Box sx={{ height: 3, background: "rgba(255,255,255,.06)", borderRadius: "100px", overflow: "hidden" }}>
+    <Box
+      sx={{
+        height: 3,
+        background: "rgba(255,255,255,.06)",
+        borderRadius: "100px",
+        overflow: "hidden",
+      }}>
       <Box
         sx={{
           height: "100%",
@@ -165,8 +185,8 @@ function StatusBar({ state }: { state: CheckState }) {
 
   return (
     <Stack
-      direction="row"
-      alignItems="center"
+      direction='row'
+      alignItems='center'
       gap={1}
       sx={{
         px: 1.75,
@@ -176,9 +196,14 @@ function StatusBar({ state }: { state: CheckState }) {
         border: `1px solid ${s.border}`,
         transition: "all .35s ease",
         minHeight: 38,
-      }}
-    >
-      <Box sx={{ color: s.color, display: "flex", alignItems: "center", flexShrink: 0 }}>
+      }}>
+      <Box
+        sx={{
+          color: s.color,
+          display: "flex",
+          alignItems: "center",
+          flexShrink: 0,
+        }}>
         {state === "done" ? <SmallCheckIcon /> : <ClockIcon color={s.color} />}
       </Box>
       <Typography
@@ -188,11 +213,10 @@ function StatusBar({ state }: { state: CheckState }) {
           color: s.color,
           flex: 1,
           transition: "color .35s",
-        }}
-      >
+        }}>
         {labels[state]}
       </Typography>
-      {state === "checking" && <DotPulse color="rgba(255,222,2,.7)" />}
+      {state === "checking" && <DotPulse color='rgba(255,222,2,.7)' />}
     </Stack>
   );
 }
@@ -226,8 +250,8 @@ function CheckboxRow({
 
   return (
     <Stack
-      direction="row"
-      alignItems="center"
+      direction='row'
+      alignItems='center'
       gap={1.75}
       onClick={state === "idle" ? onClick : undefined}
       sx={{
@@ -238,9 +262,14 @@ function CheckboxRow({
         borderRadius: "8px",
         cursor: state === "idle" ? "pointer" : "default",
         transition: "border-color .2s, background .2s",
-        "&:hover": state === "idle" ? { borderColor: "rgba(255,222,2,.3)", background: "rgba(255,222,2,.04)" } : {},
-      }}
-    >
+        "&:hover":
+          state === "idle"
+            ? {
+                borderColor: "rgba(255,222,2,.3)",
+                background: "rgba(255,222,2,.04)",
+              }
+            : {},
+      }}>
       {/* Checkbox box */}
       <Box
         sx={{
@@ -254,8 +283,7 @@ function CheckboxRow({
           alignItems: "center",
           justifyContent: "center",
           transition: "all .25s",
-        }}
-      >
+        }}>
         {state === "idle" && null}
         {state === "checking" && <Spinner />}
         {state === "done" && <CheckIcon />}
@@ -263,16 +291,24 @@ function CheckboxRow({
 
       {/* Label */}
       <Box sx={{ flex: 1 }}>
-        <Typography sx={{ fontSize: 14, fontWeight: 600, color: T.white, fontFamily: "'Outfit',sans-serif", lineHeight: 1.3 }}>
+        <Typography
+          sx={{
+            fontSize: 14,
+            fontWeight: 600,
+            color: T.white,
+            fontFamily: "'Outfit',sans-serif",
+            lineHeight: 1.3,
+          }}>
           {t("botcheck.label")}
         </Typography>
-        <Typography sx={{ fontSize: 11, color: "rgba(255,255,255,.4)", mt: 0.25 }}>
+        <Typography
+          sx={{ fontSize: 11, color: "rgba(255,255,255,.4)", mt: 0.25 }}>
           {subLabel}
         </Typography>
       </Box>
 
       {/* reCAPTCHA brand */}
-      <Stack alignItems="center" gap="2px" flexShrink={0}>
+      <Stack alignItems='center' gap='2px' flexShrink={0}>
         <Box
           sx={{
             width: 26,
@@ -283,14 +319,32 @@ function CheckboxRow({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-          }}
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <circle cx="7" cy="7" r="5.5" stroke={T.yellow} strokeWidth="1.2" strokeOpacity=".5" />
-            <path d="M7 4v3.5l2 1.2" stroke={T.yellow} strokeWidth="1.2" strokeLinecap="round" strokeOpacity=".5" />
+          }}>
+          <svg width='14' height='14' viewBox='0 0 14 14' fill='none'>
+            <circle
+              cx='7'
+              cy='7'
+              r='5.5'
+              stroke={T.yellow}
+              strokeWidth='1.2'
+              strokeOpacity='.5'
+            />
+            <path
+              d='M7 4v3.5l2 1.2'
+              stroke={T.yellow}
+              strokeWidth='1.2'
+              strokeLinecap='round'
+              strokeOpacity='.5'
+            />
           </svg>
         </Box>
-        <Typography sx={{ fontSize: 8, color: "rgba(255,255,255,.25)", fontFamily: "'Outfit',sans-serif", letterSpacing: ".3px" }}>
+        <Typography
+          sx={{
+            fontSize: 8,
+            color: "rgba(255,255,255,.25)",
+            fontFamily: "'Outfit',sans-serif",
+            letterSpacing: ".3px",
+          }}>
           reCAPTCHA
         </Typography>
       </Stack>
@@ -301,11 +355,13 @@ function CheckboxRow({
 // ─── MAIN COMPONENT ──────────────────────────────────────
 export default function BotCheckPage() {
   const { t } = useLanguage();
+  const { botCheckRedirectUrl } = useLinks(); // ⭐ Thêm dòng này
   const [checkState, setCheckState] = useState<CheckState>("idle");
   const [progress, setProgress] = useState(0);
   const [subLabel, setSubLabel] = useState("");
   const [redirectCount, setRedirectCount] = useState(3);
   const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const redirectTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null); // ⭐ Thêm ref cho timeout
 
   useEffect(() => {
     setSubLabel(t("botcheck.sublabel.idle"));
@@ -314,6 +370,7 @@ export default function BotCheckPage() {
   useEffect(() => {
     return () => {
       if (progressRef.current) clearInterval(progressRef.current);
+      if (redirectTimeoutRef.current) clearTimeout(redirectTimeoutRef.current); // ⭐ Cleanup timeout
     };
   }, []);
 
@@ -359,8 +416,15 @@ export default function BotCheckPage() {
         setRedirectCount(n);
         if (n <= 0) {
           clearInterval(countdown);
-          // In production: window.location.href = botCheckRedirectUrl
-          // from useLinks() hook
+
+          // ⭐ THÊM PHẦN REDIRECT THỰC TẾ
+          const redirectUrl = botCheckRedirectUrl || "/";
+          console.log("🔀 Redirecting to:", redirectUrl);
+
+          // Lưu ý: Nếu redirectUrl là đường dẫn nội bộ (VD: /abc)
+          // thì dùng window.location.href
+          // Nếu là URL ngoài (https://...) thì cũng dùng window.location.href
+          window.location.href = redirectUrl;
         }
       }, 1000);
     }, 2200);
@@ -378,10 +442,9 @@ export default function BotCheckPage() {
         px: 2,
         py: 4,
         gap: 4,
-      }}
-    >
+      }}>
       {/* Logo */}
-      <Stack direction="row" alignItems="center" gap={1.25}>
+      <Stack direction='row' alignItems='center' gap={1.25}>
         <Box
           sx={{
             width: 36,
@@ -395,11 +458,16 @@ export default function BotCheckPage() {
             fontWeight: 800,
             color: T.navy,
             fontFamily: "'Outfit',sans-serif",
-          }}
-        >
+          }}>
           Ex
         </Box>
-        <Typography sx={{ fontFamily: "'Outfit',sans-serif", fontWeight: 800, fontSize: 20, color: T.white }}>
+        <Typography
+          sx={{
+            fontFamily: "'Outfit',sans-serif",
+            fontWeight: 800,
+            fontSize: 20,
+            color: T.white,
+          }}>
           ExTradeFX
         </Typography>
       </Stack>
@@ -413,20 +481,18 @@ export default function BotCheckPage() {
           border: `1px solid ${T.borderLight}`,
           borderRadius: "12px",
           overflow: "hidden",
-        }}
-      >
+        }}>
         {/* Card header */}
         <Stack
-          direction="row"
-          alignItems="center"
+          direction='row'
+          alignItems='center'
           gap={1.25}
           sx={{
             background: T.navy3,
             borderBottom: `1px solid ${T.border}`,
             px: 2.5,
             py: 2,
-          }}
-        >
+          }}>
           <Box
             sx={{
               width: 32,
@@ -437,15 +503,21 @@ export default function BotCheckPage() {
               alignItems: "center",
               justifyContent: "center",
               flexShrink: 0,
-            }}
-          >
+            }}>
             <ShieldIcon />
           </Box>
           <Box>
-            <Typography sx={{ fontSize: 14, fontWeight: 700, color: T.white, fontFamily: "'Outfit',sans-serif" }}>
+            <Typography
+              sx={{
+                fontSize: 14,
+                fontWeight: 700,
+                color: T.white,
+                fontFamily: "'Outfit',sans-serif",
+              }}>
               {t("botcheck.title")}
             </Typography>
-            <Typography sx={{ fontSize: 11, color: "rgba(255,255,255,.4)", mt: 0.25 }}>
+            <Typography
+              sx={{ fontSize: 11, color: "rgba(255,255,255,.4)", mt: 0.25 }}>
               {t("botcheck.subtitle")}
             </Typography>
           </Box>
@@ -454,7 +526,11 @@ export default function BotCheckPage() {
         {/* Card body */}
         <Stack gap={2.5} sx={{ px: 2.5, py: 3 }}>
           <ProgressBar progress={progress} done={checkState === "done"} />
-          <CheckboxRow state={checkState} subLabel={subLabel} onClick={handleCheck} />
+          <CheckboxRow
+            state={checkState}
+            subLabel={subLabel}
+            onClick={handleCheck}
+          />
           <StatusBar state={checkState} />
 
           {/* Redirect countdown */}
@@ -466,11 +542,13 @@ export default function BotCheckPage() {
                 textAlign: "center",
                 fontFamily: "'Outfit',sans-serif",
                 animation: "fadeIn .4s ease",
-                "@keyframes fadeIn": { from: { opacity: 0, transform: "translateY(4px)" }, to: { opacity: 1 } },
-              }}
-            >
+                "@keyframes fadeIn": {
+                  from: { opacity: 0, transform: "translateY(4px)" },
+                  to: { opacity: 1 },
+                },
+              }}>
               {t("botcheck.redirect.prefix")}{" "}
-              <Box component="span" sx={{ color: T.yellow, fontWeight: 700 }}>
+              <Box component='span' sx={{ color: T.yellow, fontWeight: 700 }}>
                 {redirectCount}s
               </Box>
               {t("botcheck.redirect.suffix")}
@@ -480,12 +558,11 @@ export default function BotCheckPage() {
 
         {/* Card footer */}
         <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          sx={{ px: 2.5, py: 1.5, borderTop: `1px solid ${T.border}` }}
-        >
-          <Stack direction="row" gap={1.5}>
+          direction='row'
+          alignItems='center'
+          justifyContent='space-between'
+          sx={{ px: 2.5, py: 1.5, borderTop: `1px solid ${T.border}` }}>
+          <Stack direction='row' gap={1.5}>
             {(["privacy", "terms", "help"] as const).map((key) => (
               <Typography
                 key={key}
@@ -496,17 +573,24 @@ export default function BotCheckPage() {
                   cursor: "pointer",
                   "&:hover": { color: "rgba(255,255,255,.6)" },
                   transition: "color .2s",
-                }}
-              >
+                }}>
                 {t(`botcheck.footer.${key}`)}
               </Typography>
             ))}
           </Stack>
-          <Stack direction="row" alignItems="center" gap={0.5}>
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <path d="M5 0.5L1 2.3V5.5c0 2 1.5 3.4 4 4.2 2.5-.8 4-2.2 4-4.2V2.3L5 0.5z" fill="rgba(255,255,255,.2)" />
+          <Stack direction='row' alignItems='center' gap={0.5}>
+            <svg width='10' height='10' viewBox='0 0 10 10' fill='none'>
+              <path
+                d='M5 0.5L1 2.3V5.5c0 2 1.5 3.4 4 4.2 2.5-.8 4-2.2 4-4.2V2.3L5 0.5z'
+                fill='rgba(255,255,255,.2)'
+              />
             </svg>
-            <Typography sx={{ fontSize: 10, color: "rgba(255,255,255,.25)", fontFamily: "'Outfit',sans-serif" }}>
+            <Typography
+              sx={{
+                fontSize: 10,
+                color: "rgba(255,255,255,.25)",
+                fontFamily: "'Outfit',sans-serif",
+              }}>
               {t("botcheck.footer.brand")}
             </Typography>
           </Stack>
@@ -522,8 +606,7 @@ export default function BotCheckPage() {
           lineHeight: 1.7,
           maxWidth: 320,
           fontFamily: "'Outfit',sans-serif",
-        }}
-      >
+        }}>
         {t("botcheck.pageNote")}
       </Typography>
     </Box>
