@@ -1,6 +1,7 @@
 // src/hooks/useLinks.js
 import { useQuery } from "react-query";
 import { api } from "../service/api";
+import { url_be } from "../config";
 
 export const useLinks = () => {
   // Lấy subpath từ URL (ví dụ: /gold → "gold")
@@ -24,8 +25,12 @@ export const useLinks = () => {
     const segment = window.location.pathname.split("/").filter(Boolean)[0];
     const subpathParam = segment ? `?subpath=${segment}` : "";
 
-    // Redirect qua /go/:type để ghi analytics
-    const goUrl = `/go/${type}${subpathParam}`;
+    // ⭐ Lấy domain của BE từ environment variable hoặc hardcode cho production
+
+    const baseUrl = url_be;
+
+    // Redirect qua BE để ghi analytics
+    const goUrl = `${baseUrl}/go/${type}${subpathParam}`;
     console.log("🔗 Redirecting to:", goUrl);
     window.location.href = goUrl;
   };
