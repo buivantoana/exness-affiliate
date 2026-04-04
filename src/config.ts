@@ -1,1 +1,1 @@
-export const url_be = "http://localhost:3000";
+export const url_be = "https://exness-affiliate-backend.onrender.com";
