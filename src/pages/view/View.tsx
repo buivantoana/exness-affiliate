@@ -74,9 +74,6 @@ const T = {
 };
 
 // ─── HELPERS ──────────────────────────────────────────────────
-const navTo = (path: string) => {
-  window.location.href = path;
-};
 
 const TagChip = ({
   label,
@@ -352,10 +349,10 @@ function UrgencyBar() {
 }
 
 // ─── HERO ────────────────────────────────────────────────────
-function Hero({ onClick }) {
+function Hero() {
   const { t } = useLanguage();
   const isMobile = useMediaQuery("(max-width:640px)");
-
+  const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   return (
     <Box
       sx={{
@@ -478,7 +475,7 @@ function Hero({ onClick }) {
         {/* CTAs */}
         <Stack direction={isMobile ? "column" : "row"} gap={1.5}>
           <Button
-            onClick={onClick}
+            onClick={() => navTo("register")}
             sx={{
               background: T.yellow,
               color: T.navy,
@@ -494,7 +491,7 @@ function Hero({ onClick }) {
             {t("hero.openAccount")} →
           </Button>
           <Button
-            onClick={() => navTo("/go/demo")}
+            onClick={() => navTo("register")}
             sx={{
               background: "transparent",
               border: `1.5px solid ${T.border}`,
@@ -604,7 +601,7 @@ function QuizSection() {
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showResult, setShowResult] = useState(false);
-
+  const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   const questions = [
     { key: "q1", text: t("quiz.q1"), options: ["gold", "forex", "crypto"] },
     {
@@ -1049,7 +1046,7 @@ function QuizSection() {
               </Typography>
               <Box sx={{ mt: 1.5 }}>
                 <Button
-                  onClick={() => navTo("/go/register")}
+                  onClick={() => navTo("register")}
                   sx={{
                     background: T.yellow,
                     color: T.navy,
@@ -1636,6 +1633,7 @@ function AccountTypes() {
 // ─── COMPARISON TABLE ────────────────────────────────────────
 function ComparisonTable() {
   const { t } = useLanguage();
+  const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   const rows = [
     {
       feature: t("compare.minDeposit"),
@@ -1818,7 +1816,7 @@ function ComparisonTable() {
 
         <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
           <Button
-            onClick={() => navTo("/go/register")}
+            onClick={() => navTo("register")}
             sx={{
               background: T.yellow,
               color: T.navy,
@@ -2110,6 +2108,7 @@ function PlatformsSection() {
 
 // ─── CONCLUSION ──────────────────────────────────────────────
 function Conclusion() {
+  const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   const { t } = useLanguage();
   return (
     <Box
@@ -2155,7 +2154,7 @@ function Conclusion() {
             {t("conclusion.ctaTitle")}
           </Typography>
           <Button
-            onClick={() => navTo("/go/register")}
+            onClick={() => navTo("register")}
             sx={{
               background: T.yellow,
               color: T.navy,
@@ -2294,6 +2293,7 @@ function Disclaimer() {
 // ─── STICKY BOTTOM MOBILE ────────────────────────────────────
 function StickyBottomMobile() {
   const { t } = useLanguage();
+  const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   return (
     <Box
       sx={{
@@ -2325,7 +2325,7 @@ function StickyBottomMobile() {
         </Typography>
       </Box>
       <Button
-        onClick={() => navTo("/go/register")}
+        onClick={() => navTo("register")}
         sx={{
           background: T.yellow,
           color: T.navy,
@@ -2360,7 +2360,7 @@ export default function ReviewPageView() {
       <TopNav />
       <Breadcrumb />
       <UrgencyBar />
-      <Hero onClick={() => navTo("livechat")} />
+      <Hero />
       <StickyNav />
       <QuizSection />
       <ExpertAssessment />
