@@ -1,7 +1,6 @@
 // src/hooks/useLinks.js
 import { useQuery } from "react-query";
 import { api } from "../service/api";
-import { url_be } from "../config";
 
 export const useLinks = () => {
   // Lấy subpath từ URL (ví dụ: /gold → "gold")
@@ -13,7 +12,7 @@ export const useLinks = () => {
   const { data, isLoading, error } = useQuery({
     queryKey,
     queryFn: () => api.getLinks(segment),
-    staleTime: 60000, // đúng theo yêu cầu tài liệu
+    staleTime: 60000,
     cacheTime: 300000,
   });
 
@@ -25,21 +24,17 @@ export const useLinks = () => {
     const segment = window.location.pathname.split("/").filter(Boolean)[0];
     const subpathParam = segment ? `?subpath=${segment}` : "";
 
-    // ⭐ Lấy domain của BE từ environment variable hoặc hardcode cho production
-
-    const baseUrl = url_be;
-
-    // Redirect qua BE để ghi analytics
-    const goUrl = `${baseUrl}/go/${type}${subpathParam}`;
+    // ⭐ Dùng relative URL (không hardcode domain)
+    const goUrl = `/go/${type}${subpathParam}`;
     console.log("🔗 Redirecting to:", goUrl);
     window.location.href = goUrl;
   };
 
   return {
-    ...data, // registerLink, tryDemoLink, liveChatLink, ...
+    ...data,
     navTo,
     isLoading,
     error,
-    segment, // hữu ích khi debug
+    segment,
   };
 };
