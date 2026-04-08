@@ -1,12 +1,13 @@
-import React from 'react'
-import ReviewPageView from './View'
+import React from "react";
+import ReviewPageView from "./View";
 
-type Props = {}
+import ExnessModernReview from "./ExnessReviewPageView";
+import ExnessReviewPageView from "./ExnessReviewPageView";
+
+type Props = {};
 
 const ViewController = (props: Props) => {
-  return (
-    <ReviewPageView/>
-  )
-}
+  return <ExnessReviewPageView />;
+};
 
-export default ViewController
+export default ViewController;

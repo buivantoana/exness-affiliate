@@ -5,6 +5,7 @@ import BotCheckPage from "../check_bot/Botcheckpage";
 import LandingPageController from "../landing_page/LandingPageController";
 import LoadingFullscreen from "../../components/Loading";
 import NotFoundPage from "../not_found/Notfoundpage";
+import ViewController from "../view/ViewController";
 
 export default function CatchAllPage() {
   const segment = window.location.pathname.split("/").filter(Boolean)[0];
@@ -22,7 +23,7 @@ export default function CatchAllPage() {
 
   if (error) {
     console.error("Failed to load subPaths:", error);
-    return <ReviewPageView />;
+    return <ViewController />;
   }
 
   if (isLoading) {
@@ -45,5 +46,5 @@ export default function CatchAllPage() {
   }
 
   // Default: / (root) → ReviewPage
-  return <ReviewPageView />;
+  return <ViewController />;
 }
