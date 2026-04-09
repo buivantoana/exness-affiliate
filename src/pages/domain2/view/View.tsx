@@ -19,8 +19,8 @@ import {
   Collapse,
   Chip,
 } from "@mui/material";
-import { useLanguage } from "../../hooks/useLanguage";
-import { useLinks } from "../../hooks/useLinks";
+import { useLanguage } from "../../../hooks/useLanguage";
+import { useLinks } from "../../../hooks/useLinks";
 
 // ─── LANGUAGE CONFIG ──────────────────────────────────────────
 const LANGUAGES = [
@@ -227,7 +227,7 @@ const Stars = ({ rating, size = 14 }: { rating: number; size?: number }) => {
 
 // ─── NAVBAR ───────────────────────────────────────────────────
 function NavBar() {
-  const { t, changeLanguage, currentLanguage } = useLanguage();
+  const { t, changeLanguage, currentLanguage } = useLanguage("domain2");
   const { navTo, isLoading } = useLinks();
   const isMobile = useMediaQuery("(max-width:640px)");
 
@@ -414,7 +414,7 @@ function NavBar() {
 
 // ─── BREADCRUMB ──────────────────────────────────────────────
 function Breadcrumb() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
   return (
     <Box
       sx={{
@@ -444,7 +444,7 @@ function Breadcrumb() {
 
 // ─── URGENCY BAR ────────────────────────────────────────────
 function UrgencyBar() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
   const [viewers, setViewers] = useState(247);
   const [openers, setOpeners] = useState(38);
 
@@ -500,7 +500,7 @@ function UrgencyBar() {
 
 // ─── HERO (dark navy bg) ──────────────────────────────────────
 function Hero() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
   const { navTo, isLoading } = useLinks();
   const isMobile = useMediaQuery("(max-width:640px)");
 
@@ -695,7 +695,7 @@ function Hero() {
 
 // ─── STICKY NAV ──────────────────────────────────────────────
 function StickyNav() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
   const [active, setActive] = useState("quiz");
   const sections = [
     "quiz",
@@ -779,7 +779,7 @@ function StickyNav() {
 
 // ─── QUIZ SECTION ────────────────────────────────────────────
 function QuizSection() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showResult, setShowResult] = useState(false);
@@ -1014,7 +1014,7 @@ function QuizSection() {
 
 // ─── EXPERT ASSESSMENT ───────────────────────────────────────
 function ExpertAssessment() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
 
   const scores = [
     { label: t("scores.trust"), value: 92, color: T.green },
@@ -1216,7 +1216,7 @@ function ExpertAssessment() {
 
 // ─── TRUST & SAFETY ──────────────────────────────────────────
 function TrustSafety() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
 
   const regulations = [
     { name: "CySEC", active: true },
@@ -1372,7 +1372,7 @@ function TrustSafety() {
 
 // ─── ACCOUNT TYPES ───────────────────────────────────────────
 function AccountTypes() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
 
   const accounts = [
     { name: t("accounts.cent"), desc: t("accounts.centDesc") },
@@ -1570,7 +1570,7 @@ function AccountTypes() {
 
 // ─── COMPARISON TABLE ────────────────────────────────────────
 function ComparisonTable() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
   const { navTo, isLoading } = useLinks();
 
   const rows = [
@@ -1796,7 +1796,7 @@ function ComparisonTable() {
 
 // ─── TESTIMONIALS ────────────────────────────────────────────
 function Testimonials() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
 
   const testimonials = [
     {
@@ -1913,7 +1913,7 @@ function Testimonials() {
 
 // ─── PLATFORMS SECTION ───────────────────────────────────────
 function PlatformsSection() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
 
   const platforms = [
     { name: t("platforms.mt4"), desc: t("platforms.mt4Desc") },
@@ -2047,7 +2047,7 @@ function PlatformsSection() {
 // ─── CONCLUSION ──────────────────────────────────────────────
 function Conclusion() {
   const { navTo, isLoading } = useLinks();
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
 
   return (
     <Box
@@ -2106,7 +2106,7 @@ function Conclusion() {
 
 // ─── FAQ ─────────────────────────────────────────────────────
 function FAQ() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
@@ -2190,7 +2190,7 @@ function FAQ() {
 
 // ─── DISCLAIMER ──────────────────────────────────────────────
 function Disclaimer() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
   return (
     <Box
       sx={{
@@ -2215,7 +2215,7 @@ function Disclaimer() {
 
 // ─── STICKY MOBILE BOTTOM ────────────────────────────────────
 function StickyBottom() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain2");
   const { navTo, isLoading } = useLinks();
 
   return (

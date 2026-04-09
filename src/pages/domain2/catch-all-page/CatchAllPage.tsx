@@ -1,11 +1,13 @@
 import { useQuery } from "react-query";
-import { api } from "../../service/api";
+import { api } from "../../../service/api";
 import ReviewPageView from "../view/View";
-import BotCheckPage from "../check_bot/Botcheckpage";
+
 import LandingPageController from "../landing_page/LandingPageController";
-import LoadingFullscreen from "../../components/Loading";
-import NotFoundPage from "../not_found/Notfoundpage";
+import LoadingFullscreen from "../../../components/Loading";
+
 import ViewController from "../view/ViewController";
+import BotCheckPage from "../../../components/Botcheckpage";
+import NotFoundPage from "../../../components/Notfoundpage";
 
 export default function CatchAllPage() {
   const segment = window.location.pathname.split("/").filter(Boolean)[0];

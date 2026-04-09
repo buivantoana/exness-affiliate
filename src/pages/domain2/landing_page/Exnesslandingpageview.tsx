@@ -15,8 +15,8 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useLanguage } from "../../hooks/useLanguage";
-import { useLinks } from "../../hooks/useLinks";
+import { useLanguage } from "../../../hooks/useLanguage";
+import { useLinks } from "../../../hooks/useLinks";
 
 // ─── LANGUAGE CONFIG ──────────────────────────────────────────
 const LANGUAGES = [

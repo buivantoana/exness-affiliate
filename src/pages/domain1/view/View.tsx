@@ -26,9 +26,9 @@ import {
   TableRow,
   Collapse,
 } from "@mui/material";
-import { useLinks } from "../../hooks/useLinks";
-import LoadingFullscreen from "../../components/Loading";
-import { useLanguage } from "../../hooks/useLanguage";
+import { useLinks } from "../../../hooks/useLinks";
+import LoadingFullscreen from "../../../components/Loading";
+import { useLanguage } from "../../../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
 
 // ─── LANGUAGE CONFIG ─────────────────────────────────────────────
@@ -151,7 +151,7 @@ const Stars = ({ rating, size = 14 }: { rating: number; size?: number }) => {
 
 // ─── TOP NAV ──────────────────────────────────────────────────
 function TopNav() {
-  const { t, changeLanguage, currentLanguage } = useLanguage();
+  const { t, changeLanguage, currentLanguage } = useLanguage("domain1");
 
   return (
     <Box
@@ -270,7 +270,7 @@ function TopNav() {
 
 // ─── BREADCRUMB ──────────────────────────────────────────────
 function Breadcrumb() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   return (
     <Box
       sx={{
@@ -294,7 +294,7 @@ function Breadcrumb() {
 
 // ─── URGENCY BAR ────────────────────────────────────────────
 function UrgencyBar() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const [viewers, setViewers] = useState(247);
   const [openers, setOpeners] = useState(38);
 
@@ -350,7 +350,7 @@ function UrgencyBar() {
 
 // ─── HERO ────────────────────────────────────────────────────
 function Hero() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const isMobile = useMediaQuery("(max-width:640px)");
   const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   return (
@@ -515,7 +515,7 @@ function Hero() {
 
 // ─── STICKY NAV ──────────────────────────────────────────────
 function StickyNav() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const [active, setActive] = useState("quiz");
   const sections = [
     "quiz",
@@ -597,7 +597,7 @@ function StickyNav() {
 
 // ─── QUIZ SECTION ────────────────────────────────────────────
 function QuizSection() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showResult, setShowResult] = useState(false);
@@ -1070,7 +1070,7 @@ function QuizSection() {
 
 // ─── EXPERT ASSESSMENT ───────────────────────────────────────
 function ExpertAssessment() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const [hoveredBar, setHoveredBar] = useState<string | null>(null);
 
   const scores = [
@@ -1283,7 +1283,7 @@ function ExpertAssessment() {
 
 // ─── TRUST & SAFETY ──────────────────────────────────────────
 function TrustSafety() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const regulations = [
     { name: "CySEC", active: true },
     { name: "FCA", active: true },
@@ -1442,7 +1442,7 @@ function TrustSafety() {
 
 // ─── ACCOUNT TYPES ───────────────────────────────────────────
 function AccountTypes() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const accounts = [
     { name: t("accounts.cent"), desc: t("accounts.centDesc") },
     {
@@ -1632,7 +1632,7 @@ function AccountTypes() {
 
 // ─── COMPARISON TABLE ────────────────────────────────────────
 function ComparisonTable() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   const rows = [
     {
@@ -1837,7 +1837,7 @@ function ComparisonTable() {
 
 // ─── TESTIMONIALS ────────────────────────────────────────────
 function Testimonials() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const testimonials = [
     {
       name: t("testimonials.t1name"),
@@ -1980,7 +1980,7 @@ function Testimonials() {
 
 // ─── PLATFORMS SECTION ───────────────────────────────────────
 function PlatformsSection() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const platforms = [
     { name: t("platforms.mt4"), desc: t("platforms.mt4Desc") },
     { name: t("platforms.mt5"), desc: t("platforms.mt5Desc") },
@@ -2109,7 +2109,7 @@ function PlatformsSection() {
 // ─── CONCLUSION ──────────────────────────────────────────────
 function Conclusion() {
   const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   return (
     <Box
       sx={{
@@ -2175,7 +2175,7 @@ function Conclusion() {
 
 // ─── FAQ ─────────────────────────────────────────────────────
 function FAQ() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
@@ -2267,7 +2267,7 @@ function FAQ() {
 
 // ─── DISCLAIMER ──────────────────────────────────────────────
 function Disclaimer() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   return (
     <Box
       sx={{
@@ -2292,7 +2292,7 @@ function Disclaimer() {
 
 // ─── STICKY BOTTOM MOBILE ────────────────────────────────────
 function StickyBottomMobile() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   return (
     <Box

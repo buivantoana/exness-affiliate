@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLinks } from './useLinks';
 
-// Helper: tạo storage key theo domain + subpath (theo tài liệu)
 const getStorageKey = () => {
   const hostname = window.location.hostname;
   const pathname = window.location.pathname;
@@ -11,22 +10,36 @@ const getStorageKey = () => {
   return `language_${hostname}_${segment}`;
 };
 
-export const useLanguage = () => {
-  const { i18n, t } = useTranslation();
-  const { defaultLanguage, isLoading } = useLinks(); // ⭐ Thêm isLoading
+export const useLanguage = (domain: any) => {
+  console.log("AAAA domain", domain);
+  
+  const { i18n, t: originalT } = useTranslation(); // ← Lấy originalT từ useTranslation không có namespace
+  
+  // Wrap lại nhưng KHÔNG thêm domain nếu key đã có domain
+  const t = (key: string, options?: any) => {
+    // Nếu key đã có domain ở đầu thì không thêm nữa
+    if (key.startsWith(`${domain}.`)) {
+      console.log(`🔀 Key đã có domain: "${key}"`);
+      return originalT(key, options);
+    }
+    // Nếu chưa có thì thêm domain vào
+    const fullKey = `${domain}.${key}`;
+    console.log(`🔀 Mapping: "${key}" -> "${fullKey}"`);
+    return originalT(fullKey, options);
+  };
+  
+  const { defaultLanguage, isLoading } = useLinks();
   const currentLanguage = i18n.language;
-  const hasInitialized = useRef(false); // ⭐ Chỉ chạy 1 lần
+  const hasInitialized = useRef(false);
 
   console.log("🔍 useLanguage debug:", { 
+    domain,
     defaultLanguage, 
     isLoading, 
     currentLanguage,
-    hasInitialized: hasInitialized.current 
   });
 
-  // Sync language từ server khi lần đầu
   useEffect(() => {
-    // ⭐ Chờ data load xong và chưa init
     if (isLoading || hasInitialized.current) return;
 
     if (defaultLanguage) {
@@ -35,13 +48,11 @@ export const useLanguage = () => {
       
       console.log("📦 Storage check:", { key, savedLang, defaultLanguage });
       
-      // Nếu chưa có trong localStorage, dùng defaultLanguage từ server
       if (!savedLang) {
         console.log("🌐 Setting default language:", defaultLanguage);
         localStorage.setItem(key, defaultLanguage);
         i18n.changeLanguage(defaultLanguage);
       } 
-      // Nếu có rồi, đồng bộ với i18n
       else if (savedLang !== currentLanguage) {
         console.log("🔄 Syncing with saved language:", savedLang);
         i18n.changeLanguage(savedLang);
@@ -57,8 +68,6 @@ export const useLanguage = () => {
     
     localStorage.setItem(key, langCode);
     i18n.changeLanguage(langCode);
-    
-    // Handle RTL cho Arabic
     document.documentElement.dir = langCode === 'ar' ? 'rtl' : 'ltr';
   };
 

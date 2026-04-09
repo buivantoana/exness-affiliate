@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { createTheme, ThemeProvider, CssBaseline, CircularProgress, Box } from "@mui/material";
 
 import "./translation/i18n";
-import LandingPageController from "./pages/landing_page/LandingPageController";
+
 import Router from "./routes/Routes";
 import { BrowserRouter } from "react-router-dom";
 

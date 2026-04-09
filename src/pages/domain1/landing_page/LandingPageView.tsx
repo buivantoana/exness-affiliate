@@ -17,10 +17,10 @@ import {
   IconButton,
   Drawer,
 } from "@mui/material";
-import { useCountdown, useLiveCounter } from "../../hooks/useCountdown";
-import { useLanguage } from "../../hooks/useLanguage";
+import { useCountdown, useLiveCounter } from "../../../hooks/useCountdown";
+import { useLanguage } from "../../../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
-import { useLinks } from "../../hooks/useLinks";
+import { useLinks } from "../../../hooks/useLinks";
 
 // ─── LANGUAGE CONFIG ─────────────────────────────────────────────
 const LANGUAGES = [
@@ -107,7 +107,7 @@ const TagChip = ({
 
 // ─── TOPBAR ──────────────────────────────────────────────────
 function TopBar() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const { h, m, s } = useCountdown();
   const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   const numStyle = {
@@ -172,7 +172,7 @@ function TopBar() {
 
 // ─── NAVBAR ──────────────────────────────────────────────────
 function NavBar() {
-  const { t, changeLanguage, currentLanguage } = useLanguage();
+  const { t, changeLanguage, currentLanguage } = useLanguage("domain1");
   const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   const isMobile = useMediaQuery("(max-width:640px)");
 
@@ -326,7 +326,7 @@ function NavBar() {
 
 // ─── LIVE STRIP ──────────────────────────────────────────────
 function LiveStrip() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const { viewers, openers } = useLiveCounter();
   return (
     <Box
@@ -370,7 +370,7 @@ function LiveStrip() {
 
 // ─── HERO ────────────────────────────────────────────────────
 function Hero() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const isMobile = useMediaQuery("(max-width:640px)");
   const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   return (
@@ -549,7 +549,7 @@ function Hero() {
 
 // ─── METRICS STRIP ──────────────────────────────────────────
 function MetricsStrip() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const metrics = [
     {
       val: t("metrics.m1val"),
@@ -629,7 +629,7 @@ function MetricsStrip() {
 
 // ─── MARQUEE ────────────────────────────────────────────────
 function Marquee() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const items = ["i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8"].map((k) =>
     t(`marquee.${k}`)
   );
@@ -686,7 +686,7 @@ function Marquee() {
 
 // ─── WHY SECTION ────────────────────────────────────────────
 function WhySection() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const cards = [
     {
       icon: "⚡",
@@ -824,7 +824,7 @@ function WhySection() {
 
 // ─── INSTRUMENTS ────────────────────────────────────────────
 function InstrumentsSection() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   const items = [
     { icon: "🥇", nameKey: "i1name", countKey: "i1count" },
@@ -883,7 +883,7 @@ function InstrumentsSection() {
 
 // ─── ACCOUNTS ────────────────────────────────────────────────
 function AccountsSection() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   const accounts = [
     {
@@ -1045,7 +1045,7 @@ function AccountsSection() {
 
 // ─── STEPS ────────────────────────────────────────────────────
 function StepsSection() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const isMobile = useMediaQuery("(max-width:640px)");
   const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   const steps = [
@@ -1165,7 +1165,7 @@ function StepsSection() {
 
 // ─── TESTIMONIALS ────────────────────────────────────────────
 function TestimonialsSection() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const testimonialsData = [
     {
       textKey: "t1text",
@@ -1331,7 +1331,7 @@ function TestimonialsSection() {
 
 // ─── PLATFORMS ──────────────────────────────────────────────
 function PlatformsSection() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const platforms = [
     { icon: "🖥", nameKey: "p1name", descKey: "p1desc" },
     { icon: "📊", nameKey: "p2name", descKey: "p2desc" },
@@ -1404,7 +1404,7 @@ function PlatformsSection() {
 
 // ─── FINAL CTA ──────────────────────────────────────────────
 function FinalCta() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const isMobile = useMediaQuery("(max-width:640px)");
   const features = ["f1", "f2", "f3", "f4"];
   const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
@@ -1484,7 +1484,7 @@ function FinalCta() {
 
 // ─── DISCLAIMER ─────────────────────────────────────────────
 function Disclaimer() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   return (
     <Box
       sx={{
@@ -1509,7 +1509,7 @@ function Disclaimer() {
 
 // ─── STICKY BOTTOM MOBILE ──────────────────────────────────
 function StickyBottom() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const { navTo, isLoading /* registerLink, signInLink, ... */ } = useLinks();
   return (
     <Box

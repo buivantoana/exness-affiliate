@@ -1,5 +1,5 @@
 import { Box, Typography, Button, Stack } from "@mui/material";
-import { useLanguage } from "../../hooks/useLanguage";
+import { useLanguage } from "../hooks/useLanguage";
 
 const T = {
   navy: "#0a0f1e",
@@ -16,7 +16,7 @@ const navTo = (path: string) => {
 };
 
 export default function NotFoundPage() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
 
   const quickLinks = [
     { labelKey: "notFound.quickLinks.trading", path: "/go/trading" },

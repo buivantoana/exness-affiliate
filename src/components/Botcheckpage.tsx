@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 
 import { Box, Typography, Stack } from "@mui/material";
-import { useLanguage } from "../../hooks/useLanguage";
-import { useLinks } from "../../hooks/useLinks";
+import { useLanguage } from "../hooks/useLanguage";
+import { useLinks } from "../hooks/useLinks";
 
 // ─── THEME TOKENS ──────────────────────────────────────────
 const T = {
@@ -155,8 +155,8 @@ function ProgressBar({ progress, done }: { progress: number; done: boolean }) {
 
 // ─── STATUS BAR ─────────────────────────────────────────
 function StatusBar({ state }: { state: CheckState }) {
-  const { t } = useLanguage();
-
+  const { t } = useLanguage("domain1");
+  
   const styles = {
     idle: {
       bg: "rgba(255,255,255,.03)",
@@ -231,7 +231,7 @@ function CheckboxRow({
   subLabel: string;
   onClick: () => void;
 }) {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
 
   const rowBorder = {
     idle: T.border,
@@ -354,7 +354,7 @@ function CheckboxRow({
 
 // ─── MAIN COMPONENT ──────────────────────────────────────
 export default function BotCheckPage() {
-  const { t } = useLanguage();
+  const { t } = useLanguage("domain1");
   const { botCheckRedirectUrl } = useLinks(); // ⭐ Thêm dòng này
   const [checkState, setCheckState] = useState<CheckState>("idle");
   const [progress, setProgress] = useState(0);

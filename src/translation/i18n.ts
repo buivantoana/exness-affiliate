@@ -41,7 +41,7 @@ i18n
       escapeValue: false,
     },
     backend: {
-      loadPath: "/locales/{{lng}}/translation2.json", // ⭐ Đường dẫn đúng với cấu trúc của bạn
+      loadPath: "/locales/{{lng}}/translation.json", // ⭐ Đường dẫn đúng với cấu trúc của bạn
     },
     ns: ["translation"], // ⭐ Chỉ 1 namespace
     defaultNS: "translation",
